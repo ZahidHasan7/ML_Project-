@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" xintegrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reusing styles from index.html for consistency */
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background-color: #1DB954; /* A vibrant green */
+            border: none;
+            border-radius: 0;
+        }
+
+        .navbar-brand, .navbar-nav li a {
+            color: #FFFFFF !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav li a:hover {
+            color: #121212 !important;
+        }
+        
+        /* Specific styles for recommend page */
+        .form-control {
+            background-color: #282828;
+            color: white;
+            border: 1px solid #404040;
+            height: 45px;
+        }
+        .form-control:focus {
+             background-color: #333;
+             border-color: #1DB954;
+             box-shadow: none;
+        }
+        .btn-warning {
+            background-color: #1DB954;
+            border-color: #1DB954;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-warning:hover {
+            background-color: #1ed760;
+            border-color: #1ed760;
+        }
+        
+        /* Card styles for recommendations */
+         .card {
+            background: #282828;
+            border: 1px solid #404040;
+            border-radius: 8px;
+            margin-top: 30px;
+            height: 480px; /* Adjusted for better consistency */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .card-img-container {
+            height: 65%; /* Allocate more space for the image */
+            width: 100%;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the area without distortion */
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 35%;
+            text-align: center;
+        }
+
+        .card-body h4, .card-body p {
+            margin: 4px 0;
+        }
+
+        .card-book-title {
+            font-weight: bold;
+            font-size: 16px;
+            white-space: normal;
+            line-height: 1.3;
+        }
+
+        .card-author {
+            font-size: 14px;
+        }
+
+        .card-stats {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* === FINAL CORRECTED COLOR RULES === */
+        /* Color Group 1: Book Title and Votes */
+        .card-body .card-book-title,
+        .card-body h4:nth-of-type(2) { /* Targets the second h4 in the card body (Votes) */
+            color: #87CEEB !important; /* Sky Blue */
+        }
+
+        /* Color Group 2: Author and Rating */
+        .card-body .card-author,       /* Targets the first h4 */
+        .card-body h4:nth-of-type(3) { /* Targets the third h4 in the card body (Rating) */
+            color: #B3B3B3 !important; /* Light Grey */
+        }
+        /* === END FINAL CORRECTED COLOR RULES === */
+
+
+        .page-title {
+            font-size: 50px;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+         <div class="container-fluid">
+            <a class="navbar-brand">Book Recommender</a>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+                <li><a>Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title">Recommend Books</h1>
+                <form action="/recommend_books" method="post">
+                    <!-- NEW: Using a datalist for autocomplete suggestions -->
+                    <input list="books" name="user_input" class="form-control" placeholder="Type or select a book..." required>
+                    <datalist id="books">
+                        {% for book in book_list %}
+                            <option value="{{ book }}">
+                        {% endfor %}
+                    </datalist>
+                    <br>
+                    <input type="submit" class="btn btn-lg btn-warning" value="Get Recommendations">
+                </form>
+            </div>
+
+            {% if data %}
+                {% for i in data %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img class="card-img-top" src="{{i[2]}}" onerror="this.onerror=null;this.src='https://placehold.co/200x300/282828/FFFFFF?text=No+Image';">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-book-title" title="{{i[0]}}">{{i[0]}}</p>
+                            <h4 class="card-author">{{i[1]}}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+</body>
+</html>
