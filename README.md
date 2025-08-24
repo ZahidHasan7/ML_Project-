@@ -1,8 +1,8 @@
-# ML_Project-Book Recommender System 📚
+## Book Recommender System 📚
 
 A web-based book recommendation system that suggests books to users based on overall popularity and personalized collaborative filtering. This project is built with Python, Pandas, and Scikit-learn, with a user-friendly interface created using Flask.
 
-🚀 Live Demo
+## 🚀 Live Demo
 You can view the live deployed application here:
  (https://book-recommender-system-v20n.onrender.com/)
 
@@ -15,19 +15,19 @@ This recommender system operates in two modes:
 
 ## Screenshots
 Here's a glimpse of the application in action.
-   ![Alt text](https://github.com/ZahidHasan7/Book_Recommender_System/blob/main/book%201.PNG)
-   ![Alt text](https://github.com/ZahidHasan7/Book_Recommender_System/blob/main/book%202.PNG)
- 
-
-
 
 Homepage & Top 50 Books:
 
 A user can browse the most popular books or select one to get recommendations.
+   ![Alt text](https://github.com/ZahidHasan7/Book_Recommender_System/blob/main/book%201.PNG)
+   
+ 
 
 Recommendation Results:
 
 After selecting a book, the system displays a list of similar books with their covers and authors.
+   ![Alt text](https://github.com/ZahidHasan7/Book_Recommender_System/blob/main/book%202.PNG)
+  
 
 ## Technologies Used
 Backend: Python, Flask
@@ -70,24 +70,31 @@ Clone the repository:
 
 Bash
 [
-git clone https://github.com/your-username/your-repo-name.git](https://github.com/ZahidHasan7/Book_Recommender_System.git)
-cd your-repo-name
+git clone (https://github.com/ZahidHasan7/Book_Recommender_System.git) ] 
+
+cd Book_Recommender_System
+
 Create a virtual environment:
 
 Bash
 
 python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+source venv/bin/activate  
+
+## On Windows, use `venv\Scripts\activate`
 Install the required dependencies:
 
-Bash
+##Bash
 
-pip install -r requirements.txt
+pip install -r requirements.txt'
+
 Run the Flask application:
 
-Bash
+##Bash
 
 python app.py
+
+
 Open your web browser and navigate to http://127.0.0.1:5000 to see the application.
 
 ## Acknowledgements
